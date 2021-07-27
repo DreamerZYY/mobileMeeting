@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+}
+#app{
+    width: 100%;
+    height:100%;
+}
+.mui-bar-tab{
+    touch-action: none;
+}
+.deviceList {
+    font-size: 4px;
+    border: 1px solid #888;
+    margin-right: 5px;
+    padding: 2px;
+    transform: scale(0.5);
+}
