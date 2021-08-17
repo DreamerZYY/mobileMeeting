@@ -59,7 +59,7 @@ const routes=[
         component: Room,
         meta:{
           title:"会议室"
-        }
+        },
       },
       {
         path: '/order/:id',
@@ -74,7 +74,6 @@ const routes=[
         meta:{
           title:"消息"
         }
-       
       },
       {
         path: '/readmessage/:id',
@@ -89,29 +88,31 @@ const routes=[
         meta:{
           title:"个人中心"
         },
-       
+        children:[
+          {
+            path: '/mine/myOrder',
+            component: MyOrder,
+            meta:{
+              title:"我的预约"
+            },
+          },
+          {
+            path: '/mine/myMeeting',
+            component: MyMeeting,
+            meta:{
+              title:"我的会议"
+            },
+          },
+          {
+            path: '/mine/myRoom',
+            component: MyRoom,
+            meta:{
+              title:"常用会议室"
+            },
+          }
+        ]
       },
-      {
-        path: '/myOrder',
-        component: MyOrder,
-        meta:{
-          title:"我的预约"
-        },
-      },
-      {
-        path: '/myMeeting',
-        component: MyMeeting,
-        meta:{
-          title:"我的会议"
-        },
-      },
-      {
-        path: '/myRoom',
-        component: MyRoom,
-        meta:{
-          title:"常用会议室"
-        },
-      }
+      
       
     ]
   },

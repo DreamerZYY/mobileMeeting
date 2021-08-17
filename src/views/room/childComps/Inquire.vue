@@ -53,17 +53,17 @@ export default {
     watch:{
         fathershow:{
             handler:function(){
-               // debugger;
-                //  this.shown=mui('#offCanvasWrapper').offCanvas().isShown()
-                //  console.log(this.shown);
-                // if(this.fathershow){
-                //     mui('#offCanvasWrapper').offCanvas('show');
-                //    console.log(this.fathershow+"111");
-                // }
-                // else{
-                //     mui('#offCanvasWrapper').offCanvas('close');
-                //      console.log(this.fathershow+"222");
-                // }
+               debugger;
+                 this.shown=mui('#offCanvasWrapper').offCanvas().isShown()
+                 console.log(this.shown);
+                if(this.fathershow){
+                    mui('#offCanvasWrapper').offCanvas('show');
+                   console.log(this.fathershow+"111");
+                }
+                else{
+                    mui('#offCanvasWrapper').offCanvas('close');
+                     console.log(this.fathershow+"222");
+                }
             }
         },
         shown:{
@@ -81,6 +81,13 @@ export default {
     mounted() {
         mui.init();
     },
+    methods:{
+        btnClick(){
+            debugger;
+            var offCanvasWrapper = mui('#offCanvasSide');
+            offCanvasWrapper.offCanvas('show');
+        }
+    }
 }
 </script>
 

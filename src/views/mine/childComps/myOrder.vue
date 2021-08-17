@@ -27,11 +27,18 @@ export default {
            otherActive:false
         }
     },
+    watch:{
+        '$route'(){
+            this.$store.commit("changeItem",this.$route.meta.title);
+        }
+    },
     components: { 
         sliderbarMine,
         orderItem
     },
     created() {
+         //不同页面显示的header内容不同
+        this.$emit('showLeft', true,false,false);
         this.$store.commit('changeOrderStatus',this.type); 
     }, 
     mounted() {

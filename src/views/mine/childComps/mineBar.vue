@@ -22,6 +22,7 @@
                 </td>
             </tr>
         </table>
+        <router-view @showLeft="showLeft"/>
     </div>
 </template>
 
@@ -39,14 +40,22 @@ export default {
     methods: {
         changeShowing(type) {
             if(type=="1"){
-                this.$router.push('/myOrder').catch(err=>{})//加catch是解决多次点击同一个按钮报错的问题;
+                //此处无法使用replace,使用replace 后无法返回
+                this.$router.push('/mine/myOrder').catch(err=>{});
+                //this.$router.push('/myOrder').catch(err=>{})//加catch是解决多次点击同一个按钮报错的问题;
             }else if(type=="2"){
-                this.$router.push('/myMeeting').catch(err=>{})//加catch是解决多次点击同一个按钮报错的问题;
+                 this.$router.push('/mine/myMeeting').catch(err=>{});
+                //this.$router.push('/myMeeting').catch(err=>{})//加catch是解决多次点击同一个按钮报错的问题;
             }else if(type=="3"){
-                this.$router.push('/myRoom').catch(err=>{})//加catch是解决多次点击同一个按钮报错的问题;
+                this.$router.push('/mine/myRoom').catch(err=>{});
+               // this.$router.push('/mine/myRoom').catch(err=>{})//加catch是解决多次点击同一个按钮报错的问题;
             }
             this.$store.commit("changeItem",this.$route.meta.title)
         },
+        showLeft(a,b,c){
+            this.$emit('showLeft', a,b,c);
+        }
+        
     },
 }
 </script>

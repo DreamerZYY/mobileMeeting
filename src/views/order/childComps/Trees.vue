@@ -182,6 +182,7 @@ export default {
             this.$emit('mySeJoin111', this.changeStatus);
         },
         selectUser(){
+            debugger;
             //每次打开回到最顶部
             mui('#offCanvasSideScroll').scroll().scrollTo(0, 0)
             var queryLi=document.querySelector("li");

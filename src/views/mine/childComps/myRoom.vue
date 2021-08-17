@@ -33,10 +33,17 @@ export default {
     components: {
         deviceRoom
     },
+    watch:{
+        '$route':{ 
+            handler:function(route){
+                 this.$store.commit("changeItem",this.$route.meta.title);
+            },
+            immediate: true//router改变立即执行 
+        }
+    },
     directives: {},
     data() {
         return {
-             //type:0,
             pageIndex:1,
             pageTotal:1,
             roomList:[],
@@ -48,7 +55,8 @@ export default {
         };
     },
     created() {
-       
+        //不同页面显示的header内容不同
+        this.$emit('showLeft', true,false,false);
         this.getMeetRoom()
     },
     computed:{
@@ -84,14 +92,8 @@ export default {
          mui.init();
          mui('.mui-scroll-wrapper').scroll({
           deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006 
-});
-         //解决侧滑组件导致页面无法滚动的问题
-        // mui('.mui-scroll-wrapper').scroll({
-        //     deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
-        // });
-        
+        });    
     },
-
     methods: {
         getMeetRoom(){
             request({
@@ -118,7 +120,7 @@ export default {
 </script>
 <style scoped>
     #dataList{
-        bottom: 50px;
+        /*bottom: 50px;*/
         position: absolute;
     }
     #dataList,#roomListUl{

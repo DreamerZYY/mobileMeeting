@@ -1,7 +1,7 @@
 <template>
     <div id="mainPage">   
         <header class="mui-bar mui-bar-nav">
-            <a v-show="showgoback"  slot="goback" id="historyBtn" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+            <a v-show="showgoback"  slot="goback" id="historyBtn" class="mui-icon mui-icon-left-nav mui-pull-left" @click="backFunc()"></a>
             <h1 slot="headername" class="mui-title" id="title">{{$store.state.title}}</h1>
             <span v-if="!messageShown">
                 <a  v-show="rightCon" slot="rightheader"  id="signOut" style="float: right;"></a>
@@ -58,10 +58,15 @@ export default {
                     "Authorization":localStorage.getItem("Ticket")
                 }, 
             }).then(res=>{
-                debugger;
                 mui.toast(res.message);
                 this.$router.go(0);
             })
+        },
+        backFunc(){
+            //console.log(this.$store.state.previousRouter.name);
+            this.$router.go(-1);
+            debugger;
+            this.$store.commit("changeItem",this.$route.meta.title);
         }
     },
 }

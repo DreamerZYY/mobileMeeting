@@ -37,6 +37,14 @@ export default {
     },
     mounted() {
     },
+    watch:{
+        '$route':{ 
+            handler:function(route){
+                 this.$store.commit("changeItem",this.$route.meta.title);
+            },
+            immediate: true//router改变立即执行 
+        }
+    },
     updated(){
         //获得slider插件对象
 		var gallery = mui('.mui-slider');

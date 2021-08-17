@@ -80,6 +80,12 @@ export default {
         
     },
     watch:{
+         '$route':{ 
+            handler:function(route){
+                 this.$store.commit("changeItem",this.$route.meta.title);
+            },
+            immediate: true//router改变立即执行 
+        },
         myJoin(){
             return this.myJoin
         }
@@ -269,6 +275,7 @@ export default {
             })
         },
         selectUser(){
+            debugger;
             this.$refs.userList.selectUser()
         }
     },

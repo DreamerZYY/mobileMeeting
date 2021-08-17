@@ -2,7 +2,7 @@
     <div>
         <div class="selectContent">
             <!-- <p  id="offCanvasShow">筛选</p> -->
-            <p id="offCanvasShow" style="padding: 5px;">
+            <p id="offCanvasShow" style="padding: 5px;" @click="btnClick()">
                 筛选
             </p>
         </div>
@@ -45,13 +45,16 @@ export default {
             isOver:false
         }
     },
+    watch:{
+        '$route':{ 
+            handler:function(route){
+                 this.$store.commit("changeItem",this.$route.meta.title);
+            },
+            immediate: true//router改变立即执行 
+        }
+    }, 
     created(){
-        this.getRoomList();
-       
-        mui.init({
-            swipeBack: false,
-        });
-        
+        this.getRoomList();   
     },
     methods:{
         getRoomList(){
@@ -104,9 +107,20 @@ export default {
             this.$router.push('/order/'+id);
             // this.$router.replace(this.path).catch(err=>{})//加catch是解决多次点击同一个按钮报错的问题;
             this.$store.commit("changeItem",this.$route.meta.title)
+        },
+        //变换侧滑动画移动效果
+        btnClick(){
+            debugger;
+              mui('#offCanvasWrapper').offCanvas('show');
+          //  this.$emit('faterShown', true);
+            // var offCanvasWrapper = mui('#offCanvasWrapper');
+            // offCanvasWrapper.offCanvas('show');
         }
     },
     mounted() {
+        mui.init({
+            swipeBack: false,
+        });
         var that = this; 
         that.pullToRefresh = mui("#roomList").pullToRefresh({ 
             up: {
@@ -118,8 +132,10 @@ export default {
                 callback: function() {
                     var self = this;
                     that.isOver=true;
-                    that.getRoomList(that.isOver);
-                    self.endPullUpToRefresh();
+                    setTimeout(()=>{
+                        that.getRoomList(1);
+                        self.endPullUpToRefresh();
+                    },1000)     
                 }
             }
         }); 
@@ -303,6 +319,7 @@ h5.mui-content-padded:first-child {
 }
 #roommListUl{
     height: 100%;
+    overflow: auto;
 }
 .mui-pull-bottom-tips{
     text-align: center;

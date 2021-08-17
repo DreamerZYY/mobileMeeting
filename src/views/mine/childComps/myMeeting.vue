@@ -6,7 +6,7 @@
                 <a :class="{'mui-active':isActive,'mui-control-item':true}"  id="no" @click="myMeeting('0')">
                     未开
                 </a>
-                <a :class="{'mui-active':otherActive,'mui-control-item':true}"id="have" @click="myMeeting('1')">
+                <a :class="{'mui-active':otherActive,'mui-control-item':true}" id="have" @click="myMeeting('1')">
                     已开
                 </a>   
             </div>
@@ -29,13 +29,14 @@ export default {
         }
     },
     created() {
+         //不同页面显示的header内容不同
+        this.$emit('showLeft', true,false,false);
         this.$store.commit('changeOrderStatus',this.type); 
     },  
     mounted() { 
     },
     methods: {
         myMeeting(res){
-            debugger;
             this.type=res;
             this.$store.commit('changeOrderStatus',res); 
             this.$refs.meetingitem.myMeeting("");

@@ -58,6 +58,14 @@ export default {
         this.$emit('showLeft', true,true,true);
         this.getOneMsg();
     },  
+    watch:{
+        '$route':{ 
+            handler:function(route){
+                 this.$store.commit("changeItem",this.$route.meta.title);
+            },
+            immediate: true//router改变立即执行 
+        }
+    },
     computed:{
         content(){
             //需使用闭包传值 否则参数不正确

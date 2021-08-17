@@ -197,6 +197,7 @@ export default {
         },
         //调出选择参会人员列表
         showMeetingMember(){
+            debugger;
             mui('#offCanvasWrapper').offCanvas('show');
             //打开选择人员列表时才判断是否有人才会，随后在人员列表页进行选中的操作
             this.$parent.selectUser();

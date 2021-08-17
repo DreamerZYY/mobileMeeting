@@ -1,6 +1,6 @@
 <template>
 <div id="mineContent">
-    <mine-bar />
+    <mine-bar  @showLeft="showLeft"/>
 </div>
 </template>
 
@@ -11,11 +11,21 @@ export default {
     components:{
         mineBar
     },
-    created() {
-         //不同页面显示的header内容不同
-        this.$emit('showLeft', true,false,false);
+    watch:{
+        //监测router的变化，当回到当前页时，不显示返回按钮
+        '$route'(){
+            this.$emit('showLeft', false,false,false);
+            this.$store.commit("changeItem",this.$route.meta.title);
+        }
     },
-    
+    created() {
+         this.$emit('showLeft', false,false,false);
+    },
+    methods:{
+        showLeft(a,b,c){
+            this.$emit('showLeft', a,b,c);
+        }
+    }
 }
 </script>
 
