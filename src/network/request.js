@@ -30,8 +30,12 @@ export function request(config){
             return res.data;
         }else if(res.data.code=="20004"){
             alert("登录失败，请检查单位号、账户或者密码是否有误!");
+            this.$router.push('/login');
         }else if(res.data.code=="30003"){
             alert("缺少必填项!");
+           
+        }else{
+            this.$router.push('/login');
         }   
     },err=>{
     })
